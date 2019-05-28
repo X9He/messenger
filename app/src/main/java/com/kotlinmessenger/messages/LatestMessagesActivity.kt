@@ -12,6 +12,7 @@ import com.kotlinmessenger.R
 import com.kotlinmessenger.models.ChatMessage
 import com.kotlinmessenger.models.User
 import com.kotlinmessenger.registerlogin.RegisterActivity
+import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
@@ -52,6 +53,9 @@ class LatestMessagesActivity : AppCompatActivity() {
                 override fun onDataChange(p0: DataSnapshot) {
                     val user = p0.getValue(User::class.java)
                     viewHolder.itemView.username_textview_latest_message.text = user?.username
+
+                    val targetImageView = viewHolder.itemView.imageview_latest_message
+                    Picasso.get().load(user?.profileImageUrl).into(targetImageView)
                 }
 
                 override fun onCancelled(p0: DatabaseError) {
