@@ -13,12 +13,10 @@ import com.kotlinmessenger.R
 import com.kotlinmessenger.models.ChatMessage
 import com.kotlinmessenger.models.User
 import com.kotlinmessenger.registerlogin.RegisterActivity
-import com.squareup.picasso.Picasso
+import com.kotlinmessenger.views.LatestMessageRow
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_latest_messages.*
-import kotlinx.android.synthetic.main.latest_message_row.view.*
 
 class LatestMessagesActivity : AppCompatActivity() {
     companion object {
@@ -36,39 +34,6 @@ class LatestMessagesActivity : AppCompatActivity() {
         listenForLatestMessages()
         fetchCurrentUser()
         verifyUserIsLoggedIn()
-    }
-
-    class LatestMessageRow(val chatMessage: ChatMessage): Item<ViewHolder>() {
-        override fun bind(viewHolder: ViewHolder, position: Int) {
-            val chatPartnerId: String
-
-            if (chatMessage.fromID == FirebaseAuth.getInstance().uid) {
-                chatPartnerId = chatMessage.toId
-            }
-            else {
-                chatPartnerId = chatMessage.fromID
-            }
-
-            val ref = FirebaseDatabase.getInstance().getReference("/users/$chatPartnerId")
-            Log.d(TAG, "query id is $chatPartnerId")
-            ref.addListenerForSingleValueEvent(object: ValueEventListener{
-                override fun onDataChange(p0: DataSnapshot) {
-                    val user = p0.getValue(User::class.java)
-                    viewHolder.itemView.username_textview_latest_message.text = user?.username
-
-                    val targetImageView = viewHolder.itemView.imageview_latest_message
-                    Picasso.get().load(user?.profileImageUrl).into(targetImageView)
-                }
-
-                override fun onCancelled(p0: DatabaseError) {
-                }
-            })
-            viewHolder.itemView.message_textview_latest_message.text = chatMessage.text
-        }
-
-        override fun getLayout(): Int {
-            return R.layout.latest_message_row
-        }
     }
 
     val latestMessagesMap = HashMap<String, ChatMessage>()
