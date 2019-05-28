@@ -31,6 +31,14 @@ class LatestMessagesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_latest_messages)
         recyclerview_latest_messages.adapter = adapter
         recyclerview_latest_messages.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        adapter.setOnItemClickListener { item, view ->
+            val intent = Intent(this,ChatLogActivity::class.java)
+
+            val row = item as LatestMessageRow
+            intent.putExtra(NewMessageActivity.USER_KEY, row.charPartnerUser)
+
+            startActivity(intent)
+        }
         listenForLatestMessages()
         fetchCurrentUser()
         verifyUserIsLoggedIn()
