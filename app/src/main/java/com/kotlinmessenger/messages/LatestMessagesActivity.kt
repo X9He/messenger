@@ -21,8 +21,8 @@ import kotlinx.android.synthetic.main.latest_message_row.view.*
 class LatestMessagesActivity : AppCompatActivity() {
     companion object {
         var currentUser: User? = null
+        val TAG = "LatestMessageActivity"
     }
-
 
     val adapter = GroupAdapter<ViewHolder>()
 
@@ -37,9 +37,26 @@ class LatestMessagesActivity : AppCompatActivity() {
 
     class LatestMessageRow(val chatMessage: ChatMessage): Item<ViewHolder>() {
         override fun bind(viewHolder: ViewHolder, position: Int) {
-//            val fromId = chatMessage.fromID
-//            val fromUser = FirebaseDatabase.getInstance().getReference("/user/$fromId")
-//            viewHolder.itemView.username_textview_latest_message.text = fromUser
+            val chatPartnerId: String
+
+            if (chatMessage.fromID == FirebaseAuth.getInstance().uid) {
+                chatPartnerId = chatMessage.toId
+            }
+            else {
+                chatPartnerId = chatMessage.fromID
+            }
+
+            val ref = FirebaseDatabase.getInstance().getReference("/users/$chatPartnerId")
+            Log.d(TAG, "query id is $chatPartnerId")
+            ref.addListenerForSingleValueEvent(object: ValueEventListener{
+                override fun onDataChange(p0: DataSnapshot) {
+                    val user = p0.getValue(User::class.java)
+                    viewHolder.itemView.username_textview_latest_message.text = user?.username
+                }
+
+                override fun onCancelled(p0: DatabaseError) {
+                }
+            })
             viewHolder.itemView.message_textview_latest_message.text = chatMessage.text
         }
 
