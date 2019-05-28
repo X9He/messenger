@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "1087098229672",
+    "firebase_url": "https://messenger-a1d42.firebaseio.com",
+    "project_id": "messenger-a1d42",
+    "storage_bucket": "messenger-a1d42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087098229672:android:af00f01a6fe0ad9f",
+        "android_client_info": {
+          "package_name": "com.hexianliang.messenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087098229672-5dd1if0i46q9793bbmovqvfm98upb93a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtfjzyU31ZqsAnj6ytbcsr-yjMemdNf6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087098229672-5dd1if0i46q9793bbmovqvfm98upb93a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087098229672:android:ca12d8f987d94ea5",
+        "android_client_info": {
+          "package_name": "com.kotlinmessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087098229672-5dd1if0i46q9793bbmovqvfm98upb93a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtfjzyU31ZqsAnj6ytbcsr-yjMemdNf6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087098229672-5dd1if0i46q9793bbmovqvfm98upb93a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
